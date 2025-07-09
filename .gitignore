@@ -1,0 +1,13 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# VirtualEnv
+.env
+.venv/
+
+# Linter
+.ruff_cache/
+
+# static files
+staticfiles/

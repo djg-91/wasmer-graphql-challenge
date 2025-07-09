@@ -1,0 +1,23 @@
+[project]
+name = "wasmer-graphql-challenge"
+version = "0.1.0"
+requires-python = ">=3.13"
+
+dependencies = [
+  "django>=5.2.4",
+  "psycopg[binary]>=3.2.9",
+  "python-decouple>=3.8",
+  "ruff>=0.12.2",
+  "uvicorn>=0.35.0",
+  "graphene-django @ git+https://github.com/jaw9c/graphene-django.git@support-async",
+]
+
+[tool.ruff]
+line-length = 88
+exclude = ["migrations", ".venv"]
+lint.extend-select = ["I"]
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+skip-magic-trailing-comma = false
