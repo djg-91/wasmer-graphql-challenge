@@ -1,0 +1,33 @@
+# Environment files
+.env
+.env.example
+
+# Git files
+.gitignore
+
+# Editor configurations
+.vscode
+
+# Logs and metadata
+*.log
+*.md
+
+# Python bytecode and cache
+*.pyc
+**/__pycache__/
+
+# Raw data files
+**/raws/
+
+# VirtualEnv
+.venv/
+
+# Linter
+.ruff_cache/
+
+# Docker files
+.dockerignore
+Dockerfile
+
+# Development tools
+Makefile
