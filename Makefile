@@ -18,7 +18,7 @@ run: ## Start the ASGI server with auto-reload
 	@$(UV) uvicorn config.asgi:application --reload --app-dir src
 
 collectstatic: ## Collect static files into STATIC_ROOT
-	@$(DJANGO) collectstatic
+	@$(DJANGO) collectstatic --no-input
 
 migrate: ## Apply database migrations
 	@$(DJANGO) migrate
@@ -26,17 +26,23 @@ migrate: ## Apply database migrations
 makemigrations: ## Create new migrations based on model changes
 	@$(DJANGO) makemigrations
 
-shell: ## Open Django interactive shell
-	@$(DJANGO) shell
-
-dump-fixtures: ## Export current database data into fixtures.json
-	@$(DJANGO) dumpdata --indent 2 > fixtures.json
-
 load-fixtures: ## Load fixtures from fixtures.json
 	@$(DJANGO) loaddata fixtures.json
 
 graphql-schema: ## Export GraphQL schema to schema.graphql
 	@$(DJANGO) graphql_schema --schema=api.schema.schema --out=schema.graphql
+
+docker-build: ## Build Docker image
+	@docker build -t wasmer-graphql .
+
+docker-run: ## Stop, remove if exists, then run Docker container
+	@docker stop wasmer-graphql-container 2>/dev/null
+	@docker rm wasmer-graphql-container 2>/dev/null
+	@docker run -d \
+		-p 8000:8000 \
+		--env-file .env \
+		--name wasmer-graphql-container \
+		wasmer-graphql
 
 format: ## Format code with Ruff
 	@$(UV) ruff format src
