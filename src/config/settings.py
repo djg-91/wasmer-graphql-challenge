@@ -10,7 +10,11 @@ SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = env('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'wasmer.jgca.dev',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
